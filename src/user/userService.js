@@ -1,4 +1,4 @@
-
+// import User from './userDb';
 
 const getUser = (data) => {
     try {

@@ -1,14 +1,11 @@
 import app from '../server.js';
 import http from 'http';
 import config from '../lib/config.js';
-// import bootstrapData from '../lib/bootstrap';
-// import initCouch from '../couchdb/init_couch';
-
+import '../lib/dbConfig.js';
 
 /**
  * Normalize a port into a number, string, or false.
  */
-
 const normalizePort =(val) =>{
     const port = parseInt(val, 10);
 
@@ -55,7 +52,7 @@ const onError = (error) => {
 
 const onListening = () => {
     // bootstrapData here;
-    console.log('Listening on ' + port);
+    console.log('Running server');
 };
 
 /**
@@ -70,19 +67,6 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
-
-
-// initCouch().then(() => {
-//     console.log('couchdb initialized');
-//     server.listen(port, function () {
-//         console.log(
-//             'Express server listening at: ' +
-//         config.get('express').apiUrl +
-//         ' ' +
-//         port
-//         );
-//     });
-// });
 
 /**
  * Listen on provided port, on all network interfaces.
