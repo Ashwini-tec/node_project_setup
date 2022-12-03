@@ -2,6 +2,7 @@ import { Router } from 'express';
 import * as user  from '../user/userController.js';
 import validation from '../../lib/schemaValidationConfig.js';
 import * as userSchema from './userValidation.js';
+import * as authenticate from '../../utils/auth.js';
 
 const router = new Router();
 
@@ -10,6 +11,7 @@ const router = new Router();
  */
 router.post(
     '/user',
+    authenticate.verifyUser,
     validation(userSchema.create()),
     user.createUser
 );
@@ -19,6 +21,7 @@ router.post(
  */
 router.get(
     '/user',
+    authenticate.verifyUser,
     user.getUser
 );
 
@@ -27,6 +30,7 @@ router.get(
  */
 router.get(
     '/user/:id',
+    authenticate.verifyUser,
     user.getById
 );
 
@@ -35,6 +39,7 @@ router.get(
  */
 router.put(
     '/user/:id',
+    authenticate.verifyUser,
     validation(userSchema.update()),
     user.updateUser
 );
@@ -45,6 +50,7 @@ router.put(
  */
 router.delete(
     '/user/:id',
+    authenticate.verifyUser,
     user.deleteUser
 );
 

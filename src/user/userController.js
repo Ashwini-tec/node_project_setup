@@ -10,7 +10,8 @@ const createUser = async(req, res) => {
     try {
         const data = req.body;
         const detail = await userSevice.createUser(data);
-        detail.password =  undefined;
+        if(detail.password)
+            detail.password =  undefined;
         return res.status(200).json({
             data: detail,
         });
@@ -74,7 +75,8 @@ const updateUser = async(req, res) => {
         const { id: userId } = req.params;
         const data =  req.body;
         const detail = await userSevice.updateUser(userId, data);
-        detail.password =  undefined;
+        if(detail.password)
+            detail.password =  undefined;
         return res.status(200).json({
             data: detail ?? MESSAGE.DATA_NOT_FOUND,
         });
