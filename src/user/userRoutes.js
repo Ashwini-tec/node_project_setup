@@ -8,18 +8,44 @@ const router = new Router();
 /**
  * create user
  */
-router.get(
+router.post(
     '/user',
-    validation(userSchema.create),
-    user.getUser
+    validation(userSchema.create()),
+    user.createUser
 );
 
 /**
- * get user deatil
+ * get user detail
  */
 router.get(
     '/user',
     user.getUser
+);
+
+/**
+ * get user by id
+ */
+router.get(
+    '/user/:id',
+    user.getById
+);
+
+/**
+ * update user detail
+ */
+router.put(
+    '/user/:id',
+    validation(userSchema.update()),
+    user.updateUser
+);
+
+
+/**
+ * delete user detail
+ */
+router.delete(
+    '/user/:id',
+    user.deleteUser
 );
 
 export default router;
