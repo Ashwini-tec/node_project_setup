@@ -1,0 +1,164 @@
+openapi: 3.0.0
+info:
+  title: Node js project setup docs
+  description: API docs
+  version: 1.0.0
+
+servers:
+  - url: "http://localhost:9000/api/"
+
+security:
+    - authorization: []
+
+tags:
+  - name: User
+    description: Endpoints to create and get user related data
+  - name: Login
+    description: Endpoints to login into system
+
+paths:
+  /user:
+    post:
+      tags:
+        - User
+      summary: Create a data for user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user"
+      responses:
+        200:
+          description: OK
+
+    get:
+      tags:
+        - User
+      summary: get all data for user
+      parameters:
+        - in: query
+          name: organization
+          schema:
+            type: string
+          description: filter according to organization id only useful for superadmin
+      responses:
+        200:
+          description: OK
+
+  /user/{:id}:
+    get:
+      tags:
+        - User
+      summary: get by id data for user
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: OK
+
+    put:
+      tags:
+        - User
+      summary: update data for user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userUpdate"
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: OK
+
+    delete:
+      tags:
+        - User
+      summary: delete user
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: OK
+
+  /login:
+    post:
+      tags:
+        - Login
+      summary: Login into system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/login"
+      responses:
+        200:
+          description: Ok
+
+components:
+  securitySchemes:
+    authorization:
+      type: http
+      scheme: bearer
+      bearerFormat: jwt
+  schemas:
+    user:
+      type: object
+      required:
+        - firstName
+        - email
+        - password
+        - address
+      properties:
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        address:
+          type: string
+        mobile:
+          type: string
+
+    userUpdate:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - address
+      properties:
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        address:
+          type: string
+        mobile:
+          type: string
+        email:
+          type: string
+
+    login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
