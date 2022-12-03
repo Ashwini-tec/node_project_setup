@@ -6,6 +6,10 @@ const app = express();
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
+
+/**
+ * adding routes
+ */
 Object.values(routes)
     .map(route => app.use('/api', route));
 

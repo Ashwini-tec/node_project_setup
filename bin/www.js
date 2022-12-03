@@ -52,7 +52,7 @@ const onError = (error) => {
 
 const onListening = () => {
     // bootstrapData here;
-    console.log('Running server');
+    console.log('Bootstraping Data');
 };
 
 /**
