@@ -2,7 +2,7 @@ import { Router } from 'express';
 import * as user  from '../user/userController.js';
 import validation from '../../lib/schemaValidationConfig.js';
 import * as userSchema from './userValidation.js';
-import * as authenticate from '../../utils/auth.js';
+import * as authenticate from '../../middleware/auth.js';
 
 const router = new Router();
 

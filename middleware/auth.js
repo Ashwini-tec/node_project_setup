@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../src/user/userDb.js';
-import { MESSAGE } from './constants.js';
+import { MESSAGE } from '../utils/constants.js';
 import config from '../lib/config.js';
 
 /***************** authenticate with token *********************************/
