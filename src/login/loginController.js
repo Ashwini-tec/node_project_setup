@@ -1,7 +1,6 @@
 import * as loginSevice from '../login/loginServices.js';
 import { MESSAGE } from '../../utils/constants.js';
-import jwt from 'jsonwebtoken';
-import config from '../../lib/config.js';
+import { generateToken } from '../../middleware/auth.js';
 
 /**
  *
@@ -37,12 +36,5 @@ const loginUser = async(req, res) => {
         });
     }
 };
-
-
-/*********** Token Generate Function ******* */
-const generateToken = (data) => {
-    return jwt.sign({ data: data }, config.JWT_SECRETE_KEY);
-};
-
 
 export { loginUser };

@@ -25,4 +25,9 @@ const verifyUser = async (req, res, next) => {
     }
 };
 
-export { verifyUser };
+/*********** Token Generate Function ******* */
+const generateToken = (data) => {
+    return jwt.sign({ data: data }, config.JWT_SECRETE_KEY);
+};
+
+export { verifyUser, generateToken };
